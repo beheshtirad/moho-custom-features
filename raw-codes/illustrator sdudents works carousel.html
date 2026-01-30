@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <!-- کد موربوط به کارهای دانشجویان ایلاستریتور که با شورت کد[wpcode id="1703"] نمایش داده میشود-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نمونه کارهای دانشجویان</title>
+    <!-- Tailwind removed to avoid global CSS reset affecting site typography -->
+    <!-- Scoped carousel styles (do not change site-wide fonts) -->
+    <style>
+        /* container should sit below any sticky header */
+        #student-showcase-root{ position:relative; z-index:0; padding:8px 0; }
+        .student-row{ position:relative; width:100%; overflow:hidden; z-index:0; margin:6px 0; }
+        .mask-left{ position:absolute; top:0; left:0; height:100%; width:28px; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); z-index:2; pointer-events:none; }
+        .mask-right{ position:absolute; top:0; right:0; height:100%; width:28px; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); z-index:2; pointer-events:none; }
+        .track{ display:flex; gap:12px; width:max-content; }
+        @media(min-width:640px){ .track{ gap:16px; } }
+        .item{ position:relative; flex-shrink:0; }
+        .img-wrap{ overflow:hidden; border-radius:10px; background:#f3f4f6; }
+        /* smaller base sizes to reduce vertical space */
+        .img-wrap img{ display:block; object-fit:cover; width:120px; height:160px; }
+        @media(min-width:640px){ .img-wrap img{ width:160px; height:200px; } }
+        @media(min-width:768px){ .img-wrap img{ width:192px; height:256px; } }
+
+        /* Keep the existing animation rules (kept here for clarity) */
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .animate-scroll-left { animation: scroll-left 50s linear infinite; }
+        .animate-scroll-right { animation: scroll-right 50s linear infinite; }
+    </style>
+    <style>
+        /* انیمیشن‌های اسکرول بی‌پایان */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* حرکت به چپ برای زبان‌های RTL */
+        }
+        
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* کلاس‌های انیمیشن با زمان طولانی برای حرکت نرم */
+        .animate-scroll-left {
+            animation: scroll-left 50s linear infinite;
+        }
+        
+        .animate-scroll-right {
+            animation: scroll-right 50s linear infinite;
+        }
+        
+        /* جهت هماهنگی با LTR/RTL:
+           چون اسکرول افقی با transform انجام می‌شود، جهت داکیومنت تاثیر مستقیم ندارد 
+           اما برای اطمینان از جهت درست در همه قالب‌ها:
+        */
+        .ltr-mode {
+            direction: ltr;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
+  }
+}
+</script>
+</head>
+<body class="bg-white">
+
+<!-- شروع کد برای کپی در Snippet وردپرس -->
+<div id="student-showcase-root" class="w-full bg-white py-6 overflow-hidden flex flex-col gap-6 md:gap-8 ltr-mode">
+    <!-- محتوا توسط جاوااسکریپت زیر تولید می‌شود -->
+</div>
+
+<script>
+    (function() {
+        // تنظیمات عکس‌ها و ردیف‌ها
+        // ابعاد: 300x450 (پرتره)
+        // Helper: return image URL.
+        // If a direct URL string is provided (starts with http/https), return it unchanged —
+        // this allows using custom image URLs as placeholders.
+        // Otherwise treat the value as a picsum id number and build the placeholder URL.
+        const getUrl = (id) => {
+            if (typeof id === 'string' && (id.startsWith('http://') || id.startsWith('https://'))) {
+                return id; // user-provided image URL
+            }
+            return `https://picsum.photos/id/${id}/300/450`;
+        };
+
+        // Replace the numeric ids below with your own image URLs if you want real images.
+        // Example:
+        // images: ['https://example.com/img1.jpg', 'https://example.com/img2.jpg', ...]
+        // The script will accept either a picsum numeric id (number) or a full URL (string).
+
+        // Use the provided image URLs below. They will be split across three rows (6 per row).
+        const imageUrls = [
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Asset-1-ilu-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Asset-1-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Asset-3-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Asset-4-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Asset-16-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/boofe-koor-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/book1-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/deer-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-10-02_13-19-46.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-07-29_23-10-22.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-09-15_18-22-29.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-09-16_16-15-13.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-09-18_00-11-48.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-06-14_00-29-12.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-10-28_23-47-20.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/Screenshot-2025-12-26-124627.png',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/traveller-100.jpg',
+            'https://mohamadmigeh.com/wp-content/uploads/2025/12/photo_2025-07-23_11-07-55.jpg'
+        ];
+
+        const rowsData = [
+            // ردیف ۱ (حرکت به چپ)
+            {
+                direction: 'left',
+                images: imageUrls.slice(0,6).map(url => ({ id: url, url: getUrl(url) }))
+            },
+            // ردیف ۲ (حرکت به راست)
+            {
+                direction: 'right',
+                images: imageUrls.slice(6,12).map(url => ({ id: url, url: getUrl(url) }))
+            },
+            // ردیف ۳ (حرکت به چپ)
+            {
+                direction: 'left',
+                images: imageUrls.slice(12,18).map(url => ({ id: url, url: getUrl(url) }))
+            }
+        ];
+
+        const container = document.getElementById('student-showcase-root');
+
+        rowsData.forEach((row, rowIndex) => {
+            // ساخت کانتینر ردیف
+            const rowWrapper = document.createElement('div');
+            rowWrapper.className = "student-row";
+
+            // گرادینت ماسک (سایه محو) چپ و راست — استفاده از کلاس‌های محلی که در بالا تعریف شده‌اند
+            const maskLeft = document.createElement('div');
+            maskLeft.className = 'mask-left';
+            const maskRight = document.createElement('div');
+            maskRight.className = 'mask-right';
+            
+            // کانتینر متحرک (Track)
+            const track = document.createElement('div');
+            // تعیین جهت انیمیشن
+            const animClass = row.direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right';
+            track.className = `track ${animClass}`;
+            
+            // تکرار عکس‌ها برای ایجاد حلقه (2 بار تکرار کافی است چون عرض کانتینر بزرگ است)
+            // ما لیست اصلی را دوبار پشت سر هم قرار می‌دهیم
+            const loopImages = [...row.images, ...row.images];
+
+            loopImages.forEach((imgData, idx) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+
+                // قالب عکس بدون هاور و سایه — استفاده از کلاس‌های محلی
+                itemDiv.innerHTML = `
+                    <div class="img-wrap">
+                        <img 
+                            src="${imgData.url}" 
+                            loading="lazy"
+                            alt="Student Work ${imgData.id}"
+                        />
+                    </div>
+                `;
+                track.appendChild(itemDiv);
+            });
+
+            // اضافه کردن به DOM
+            rowWrapper.appendChild(track);
+            rowWrapper.appendChild(maskLeft);
+            rowWrapper.appendChild(maskRight);
+            container.appendChild(rowWrapper);
+        });
+    })();
+</script>
+<!-- پایان کد Snippet -->
+
+</body>
+</html>
