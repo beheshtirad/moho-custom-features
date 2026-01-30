@@ -1,0 +1,75 @@
+/* =========================================
+   1. عمومی و دانلود باکس
+   ========================================= */
+.moho-dl-wrapper {
+    position: relative !important;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    direction: rtl;
+}
+.moho-dl-box-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #240f3a;
+    border-radius: 50px;
+    background: #ffffff;
+    padding: 8px;
+    position: relative;
+    z-index: 10;
+}
+a.moho-dl-button-v2 {
+    background: #240f3a;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 15px 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+a.moho-dl-button-v2:hover {
+    background: #ffcc00;
+    color: #240f3a;
+}
+.moho-dl-password-tab {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #240f3a;
+    color: #fff;
+    border-radius: 0 0 20px 20px;
+    padding: 15px 20px 5px;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.3s;
+}
+.moho-dl-password-tab:hover {
+    bottom: -40px;
+}
+
+/* =========================================
+   2. پاپ‌آپ دیجیتس و فرم‌ها
+   ========================================= */
+.digits_secure_modal_contents {
+    border-radius: 15px !important;
+}
+.digits-form_button {
+    background-color: #240f3a !important;
+    border-radius: 50px !important;
+}
+
+/* =========================================
+   3. اصلاحات موبایل
+   ========================================= */
+@media (max-width: 768px) {
+    .moho-dl-box-v2 {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    .moho-dl-password-tab {
+        width: 80%;
+        text-align: center;
+    }
+}
