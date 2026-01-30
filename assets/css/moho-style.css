@@ -325,11 +325,22 @@ a.moho-dl-button-v2:hover {
 /* --- استایل باکس‌های درس --- */
 /* (این کلاس‌ها توسط JS تولید می‌شوند) */
 
-/* ریست کردن لیست */
-#sp-ea-1055 .ea-body ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-#sp-ea-1055 .ea-body ul li { 
-    padding: 0 !important; margin: 0 0 12px 0 !important; 
-    background: none !important; font-weight: normal !important;
+/* ریست کردن لیست (برای تمام آکاردئون‌ها) */
+.sp-easy-accordion .ea-body ul { 
+    list-style: none !important; 
+    padding: 0 !important; 
+    margin: 0 !important; 
+}
+.sp-easy-accordion .ea-body ul li { 
+    padding: 0 !important; 
+    margin: 0 0 12px 0 !important; 
+    background: none !important; 
+    font-weight: normal !important;
+}
+/* حذف بولت‌های پیش‌فرض وردپرس اگر هنوز مانده‌اند */
+.sp-easy-accordion .ea-body ul li::before {
+    content: none !important;
+    display: none !important;
 }
 
 .migeh-lesson-box {
