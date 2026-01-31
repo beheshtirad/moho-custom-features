@@ -305,7 +305,6 @@ function moho_render_modern_product_header() {
 function moho_remove_default_related_products() {
     if ( is_product() ) {
         remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
-        // حذف آپ‌سل‌ها (محصولات پیشنهادی) اگر لازم باشد
         remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
     }
 }
@@ -321,7 +320,6 @@ function moho_render_custom_related_products() {
     // دریافت ۳ محصول مرتبط
     $related_ids = wc_get_related_products( $product->get_id(), 3 );
     
-    // اگر محصول مرتبطی نبود، خارج شو
     if ( empty( $related_ids ) ) return;
 
     echo '<section class="migeh-related-products-v3">';
@@ -331,7 +329,6 @@ function moho_render_custom_related_products() {
     foreach ( $related_ids as $related_id ) {
         $rel_product = wc_get_product( $related_id );
         
-        // اطمینان از وجود محصول
         if ( ! $rel_product ) continue;
 
         $link = get_permalink( $related_id );

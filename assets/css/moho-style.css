@@ -1395,13 +1395,13 @@ html { scroll-behavior: smooth; }
    19. بازطراحی صفحه محصول ووکامرس (Product Redesign)
    ========================================= */
 
-/* --- ۱. مخفی کردن بخش‌های پیش‌فرض قالب --- */
+/* --- ۱. مخفی کردن بخش‌های پیش‌فرض قالب (اصلاح شده) --- */
 .product-header, 
 .woocommerce-product-gallery, 
 .summary.entry-summary,
-li.woolearn_lessons_tab, 
-#tab-woolearn_lessons, 
-.woolearn-headlines,
+/* li.woolearn_lessons_tab,  <-- این خط کامنت شد تا تب دروس برگردد */
+/* #tab-woolearn_lessons,    <-- این خط کامنت شد تا محتوای تب دروس برگردد */
+/* .woolearn-headlines,      <-- این خط کامنت شد تا سرفصل‌ها (Headings) برگردند */
 .woocommerce-product-rating, 
 .product-sidebar-widget--course-information,
 .product-sidebar-widget--course-author-products,
@@ -1410,6 +1410,12 @@ hr.line,
 .separator, 
 .view-wishlist {
     display: none !important;
+}
+
+/* اطمینان از نمایش تب دروس */
+#tab-woolearn_lessons {
+    display: block !important;
+    margin-top: 30px;
 }
 
 /* --- ۲. استایل هدر جدید (کارت سفید بزرگ) --- */
