@@ -800,20 +800,23 @@ form.woocommerce-ordering,
 }
 
 /* =========================================
-   13. کاروسل نمونه‌کارهای دانشجویان (Infinite Carousel)
+   13. کاروسل نمونه‌کارهای دانشجویان (Infinite Carousel) - نسخه اصلاح شده
    ========================================= */
 
 /* کانتینر اصلی */
 #student-showcase-root {
     position: relative;
     z-index: 0;
-    padding: 8px 0;
+    padding: 8px 0; /* پدینگ کلی */
     width: 100%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 24px; /* فاصله بین ردیف‌ها */
-    direction: ltr; /* اجبار به LTR برای انیمیشن درست */
+    
+    /* 🔻 تغییر مهم: کاهش فاصله بین ردیف‌ها */
+    gap: 12px; /* قبلاً 24px بود، الان نصف شده */
+    
+    direction: ltr;
     overflow: hidden;
 }
 
@@ -823,36 +826,27 @@ form.woocommerce-ordering,
     width: 100%;
     overflow: hidden;
     z-index: 0;
-    margin: 6px 0;
+    margin: 0; /* حذف مارجین اضافی */
 }
 
-/* ماسک‌های محو شونده کناری (Fade Effect) */
+/* ماسک‌های محو شونده (بدون تغییر) */
 .mask-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 50px; /* کمی عریض‌تر برای زیبایی */
+    position: absolute; top: 0; left: 0; height: 100%; width: 50px;
     background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
-    z-index: 2;
-    pointer-events: none;
+    z-index: 2; pointer-events: none;
 }
 .mask-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 50px;
+    position: absolute; top: 0; right: 0; height: 100%; width: 50px;
     background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
-    z-index: 2;
-    pointer-events: none;
+    z-index: 2; pointer-events: none;
 }
 
 /* مسیر حرکت (Track) */
 .track {
     display: flex;
-    gap: 12px;
+    gap: 12px; /* فاصله افقی بین عکس‌ها */
     width: max-content;
+    padding: 5px 0; /* کمی فضا برای سایه‌ها */
 }
 @media(min-width: 640px) { .track { gap: 16px; } }
 
@@ -860,38 +854,52 @@ form.woocommerce-ordering,
 .item {
     position: relative;
     flex-shrink: 0;
+    display: flex; /* اطمینان از حذف فضاهای خالی */
 }
 
-/* قاب عکس */
+/* 🔻 تغییر مهم: قاب عکس */
 .img-wrap {
     overflow: hidden;
     border-radius: 10px;
-    background: #f3f4f6;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* کمی سایه */
+    background: transparent !important; /* حذف پس‌زمینه طوسی */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* سایه نرم */
+    
+    /* فیت شدن قاب با عکس */
+    width: fit-content;
+    height: fit-content;
+    line-height: 0; /* حذف فاصله زیرین عکس */
+    display: block;
 }
 
-/* استایل عکس */
+/* 🔻 تغییر مهم: استایل عکس */
 .img-wrap img {
     display: block;
     object-fit: cover;
+    
+    /* سایز عکس‌ها را ثابت نگه می‌داریم تا یکدست باشند */
     width: 120px;
-    height: 160px;
+    height: auto; /* اگر عکس‌ها سایز متفاوت دارند، این ارتفاع را auto کنید */
+    
     transition: transform 0.3s ease;
+    margin: 0 !important;
+    padding: 0 !important;
 }
+
+/* افکت هاور */
 .img-wrap:hover img {
-    transform: scale(1.05); /* زوم ریز هنگام هاور */
+    transform: scale(1.05);
 }
 
 /* ریسپانسیو */
 @media(min-width: 640px) { 
     .img-wrap img { width: 160px; height: 200px; } 
-    #student-showcase-root { gap: 32px; }
+    #student-showcase-root { gap: 20px; } /* در دسکتاپ کمی فاصله بیشتر */
 }
 @media(min-width: 768px) { 
     .img-wrap img { width: 192px; height: 256px; } 
 }
 
-/* انیمیشن‌ها */
+/* انیمیشن‌ها (بدون تغییر) */
 @keyframes scroll-left { 
     0% { transform: translateX(0); } 
     100% { transform: translateX(-50%); } 
@@ -901,17 +909,9 @@ form.woocommerce-ordering,
     100% { transform: translateX(0); } 
 }
 
-.animate-scroll-left { 
-    animation: scroll-left 50s linear infinite; 
-}
-.animate-scroll-right { 
-    animation: scroll-right 50s linear infinite; 
-}
-
-/* توقف انیمیشن هنگام هاور (برای بررسی دقیق‌تر عکس‌ها) */
-.track:hover {
-    animation-play-state: paused;
-}
+.animate-scroll-left { animation: scroll-left 50s linear infinite; }
+.animate-scroll-right { animation: scroll-right 50s linear infinite; }
+.track:hover { animation-play-state: paused; }
 
 /* =========================================
    14. اصلاحات نهایی و سراسری قالب (General Tweaks)
@@ -1399,9 +1399,9 @@ html { scroll-behavior: smooth; }
 .product-header, 
 .woocommerce-product-gallery, 
 .summary.entry-summary,
-/* li.woolearn_lessons_tab,  <-- این خط کامنت شد تا تب دروس برگردد */
-/* #tab-woolearn_lessons,    <-- این خط کامنت شد تا محتوای تب دروس برگردد */
-/* .woolearn-headlines,      <-- این خط کامنت شد تا سرفصل‌ها (Headings) برگردند */
+li.woolearn_lessons_tab,  
+#tab-woolearn_lessons, 
+.woolearn-headlines, 
 .woocommerce-product-rating, 
 .product-sidebar-widget--course-information,
 .product-sidebar-widget--course-author-products,
@@ -1412,11 +1412,7 @@ hr.line,
     display: none !important;
 }
 
-/* اطمینان از نمایش تب دروس */
-#tab-woolearn_lessons {
-    display: block !important;
-    margin-top: 30px;
-}
+
 
 /* --- ۲. استایل هدر جدید (کارت سفید بزرگ) --- */
 .cb-modern-header {
@@ -1475,16 +1471,16 @@ hr.line,
 }
 .cb-video-trigger a {
     display: flex; align-items: center; justify-content: center;
-    width: 65px; height: 65px;
+    width: 80px; height: 80px;
     background: rgba(0,0,0,0.6); 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     border-radius: 50%; color: #fff; 
     border: 2px solid rgba(255,255,255,0.6);
     transition: 0.3s;
     text-decoration: none !important;
 }
 .cb-video-trigger a:hover {
-    background: #e84118; transform: scale(1.1); border-color: transparent;
+    background: #ffcc00; transform: scale(1.1); border-color: transparent;
 }
 .cb-video-trigger svg { width: 28px; height: 28px; fill: currentColor; }
 
@@ -1498,11 +1494,20 @@ hr.line,
 .cb-label { color: #888; }
 .cb-val, .cb-val a { color: #333; font-weight: bold; text-decoration: none !important; }
 
-/* آیکون تیک */
+/* آیکون تیک (SVG) */
 .moho-verified-icon {
-    color: #1c96e8; margin-right: 5px; font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
+.moho-verified-icon svg {
+    width: 18px;  /* سایز آیکون */
+    height: 18px;
+    fill: #1d9bf0; /* رنگ آبی توییتر (از کد SVG) */
+}
 /* --- ۳. فوتر (قیمت و خرید) --- */
 .cb-footer-row {
     background: #fdfdfd; border: 1px solid #eee; border-radius: 14px;
@@ -1897,4 +1902,87 @@ li.sticky-cta-btn a.button .btn-content::after {
 .moho-youtube-link-box p a:hover strong {
     color: #ffcc00; 
     text-decoration: underline;
+}
+
+/* =========================================
+   23. تنظیمات نهایی: جداسازی کامل متن سایت از اپلیکیشن
+   ========================================= */
+
+/* --- A. بخش متون توضیحات محصول (وبلاگی و خوانا) --- */
+.woocommerce-Tabs-panel {
+    line-height: 1.8;
+}
+
+.woocommerce-Tabs-panel h2, 
+.woocommerce-Tabs-panel h3, 
+.woocommerce-Tabs-panel h4 {
+    display: block !important;
+    font-weight: 800 !important;
+    font-family: inherit !important;
+    line-height: 1.4 !important;
+    color: inherit;
+}
+.woocommerce-Tabs-panel h2 { font-size: 1.8em !important; }
+.woocommerce-Tabs-panel h3 { font-size: 1.5em !important; }
+
+/* فاصله استاندارد برای پاراگراف‌های معمولی */
+.woocommerce-Tabs-panel p {
+    margin-bottom: 24px !important;
+    font-size: 16px !important;
+}
+
+/* =========================================
+   23. گرد کردن گوشه‌های Presto Player
+   ========================================= */
+
+/* ما باید هم تگ اصلی (Web Component) و هم کانتینر داخلی را هدف بگیریم.
+   دستور mask-image برای مرورگرهای مدرن (کروم/سافاری) ضروری است تا ویدیو واقعاً برش بخورد.
+*/
+
+presto-player,
+.presto-player,
+.plyr,
+.plyr__video-wrapper {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    
+    /* فیکس برای جلوگیری از بیرون زدن ویدیو در برخی مرورگرها */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    
+    /* حذف حاشیه‌های احتمالی */
+    outline: none !important;
+    box-shadow: none !important; 
+}
+
+/* اطمینان از اینکه خود ویدیو و پوستر هم تبعیت می‌کنند */
+.presto-player video,
+.plyr__video-wrapper video,
+.plyr__poster {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+}
+
+/* اضافه کردن کمی سایه برای زیبایی (اختیاری) */
+presto-player {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+/* 1. تنظیم چسبندگی و عرض */
+.migeh-hub-sticky-col {
+    position: -webkit-sticky !important; /* برای سافاری */
+    position: sticky !important;
+    top: 120px !important; /* فاصله از سقف مرورگر */
+    z-index: 99;
+    
+    /* نکته مهم: اگر محتوا کمتر از ارتفاع صفحه بود، این خط کمک می‌کند */
+    align-self: flex-start !important; 
+}
+
+/* ریسپانسیو: در موبایل و تبلت چسبندگی را غیرفعال کن تا فضا اشغال نکند */
+@media (max-width: 1024px) {
+    .migeh-hub-sticky-col {
+        position: relative !important;
+        top: 0 !important;
+    }
 }
