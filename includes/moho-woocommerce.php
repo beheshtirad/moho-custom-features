@@ -179,3 +179,198 @@ function moho_videm_order_page_guide( $order ) {
     <?php
 }
 add_action( 'woocommerce_order_details_after_order_table', 'moho_videm_order_page_guide', 10 );
+
+
+/**
+ * ==================================================================
+ * 4. بازطراحی صفحه محصول تکی (Single Product Redesign)
+ * ==================================================================
+ */
+
+// اجرای هوک‌ها فقط در صفحه محصول
+add_action('wp', 'moho_woocommerce_init');
+
+function moho_woocommerce_init() {
+    if (!is_product()) return;
+
+    // الف) حذف بخش‌های پیش‌فرض قالب (Cleanup)
+    remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+    
+    // ب) اضافه کردن هدر جدید (جایگزین)
+    add_action('woocommerce_before_single_product', 'moho_render_modern_product_header', 5);
+}
+
+// تابع ساخت هدر جدید
+function moho_render_modern_product_header() {
+    global $product;
+    $product_id = $product->get_id();
+    
+    // دریافت اطلاعات
+    $image_id  = $product->get_image_id();
+    $image_url = wp_get_attachment_image_url($image_id, 'full');
+    
+    $teacher_id = get_post_field( 'post_author', $product_id );
+    $teacher_name = get_the_author_meta( 'display_name', $teacher_id );
+    
+    $level = $product->get_attribute('سطح'); 
+    $style = $product->get_attribute('سبک'); 
+    
+    ?>
+    
+    <div class="container cb-main-container">
+        <div class="cb-modern-header">
+            
+            <div class="cb-title-row">
+                <h1><?php the_title(); ?></h1>
+            </div>
+
+            <div class="cb-body-row">
+                
+                <div class="cb-gallery-col">
+                    <div class="cb-image-wrapper">
+                        <?php if ($image_url) : ?>
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>">
+                        <?php else: ?>
+                            <img src="<?php echo wc_placeholder_img_src(); ?>" alt="Placeholder">
+                        <?php endif; ?>
+                        
+                        <div class="cb-video-trigger">
+                            <a href="#product-intro-video" data-bs-toggle="modal" data-bs-target="#product-intro-video">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cb-info-col">
+                    <ul class="cb-specs-list">
+                        <li>
+                            <span class="cb-label">مدرس:</span>
+                            <span class="cb-val">
+                                <?php echo esc_html($teacher_name); ?> 
+                                <span class="moho-verified-icon">✓</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="cb-label">دسته:</span>
+                            <span class="cb-val"><?php echo wc_get_product_category_list($product_id); ?></span>
+                        </li>
+                        <?php if (!empty($level)) : ?>
+                        <li>
+                            <span class="cb-label">سطح:</span>
+                            <span class="cb-val"><?php echo esc_html($level); ?></span>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (!empty($style)) : ?>
+                        <li>
+                            <span class="cb-label">سبک:</span>
+                            <span class="cb-val"><?php echo esc_html($style); ?></span>
+                        </li>
+                        <?php endif; ?>
+                        <li>
+                            <span class="cb-label">شامل:</span>
+                            <span class="cb-val">فایل‌های تمرین و پروژه</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cb-footer-row">
+                <div class="cb-price-wrapper">
+                    <?php echo $product->get_price_html(); ?>
+                </div>
+                <div class="cb-btn-wrapper">
+                    <?php woocommerce_template_single_add_to_cart(); ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * ==================================================================
+ * 5. محصولات مشابه اختصاصی (Custom Related Products)
+ * ==================================================================
+ */
+
+// الف) حذف محصولات مشابه پیش‌فرض
+function moho_remove_default_related_products() {
+    if ( is_product() ) {
+        remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+        // حذف آپ‌سل‌ها (محصولات پیشنهادی) اگر لازم باشد
+        remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+    }
+}
+add_action( 'wp', 'moho_remove_default_related_products' );
+
+// ب) رندر بخش اختصاصی
+add_action( 'woocommerce_after_single_product_summary', 'moho_render_custom_related_products', 25 );
+
+function moho_render_custom_related_products() {
+    global $product;
+    if ( ! $product ) return;
+
+    // دریافت ۳ محصول مرتبط
+    $related_ids = wc_get_related_products( $product->get_id(), 3 );
+    
+    // اگر محصول مرتبطی نبود، خارج شو
+    if ( empty( $related_ids ) ) return;
+
+    echo '<section class="migeh-related-products-v3">';
+    echo '<h2>محصولات مشابه</h2>';
+    echo '<div class="migeh-grid-container">';
+
+    foreach ( $related_ids as $related_id ) {
+        $rel_product = wc_get_product( $related_id );
+        
+        // اطمینان از وجود محصول
+        if ( ! $rel_product ) continue;
+
+        $link = get_permalink( $related_id );
+        $image = get_the_post_thumbnail_url( $related_id, 'woocommerce_thumbnail' );
+        $title = $rel_product->get_name();
+        $price_html = $rel_product->get_price_html();
+        
+        $teacher_id = get_post_field( 'post_author', $related_id );
+        $teacher_name = get_the_author_meta( 'display_name', $teacher_id );
+
+        ?>
+        <div class="migeh-card">
+            
+            <div class="migeh-card-img">
+                <a href="<?php echo esc_url( $link ); ?>">
+                    <img src="<?php echo $image ? esc_url( $image ) : wc_placeholder_img_src(); ?>" alt="<?php echo esc_attr( $title ); ?>">
+                </a>
+            </div>
+            
+            <div class="migeh-card-content">
+                <div class="migeh-card-teacher">
+                    <i class="fa-solid fa-chalkboard-teacher"></i> <?php echo esc_html( $teacher_name ); ?>
+                </div>
+                
+                <h3 class="migeh-card-title">
+                    <a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $title ); ?></a>
+                </h3>
+                
+                <div class="migeh-card-price">
+                    <?php echo $price_html; ?>
+                </div>
+            </div>
+            
+            <div class="migeh-card-action">
+                <a href="<?php echo esc_url( $link ); ?>" class="migeh-btn">اطلاعات بیشتر</a>
+            </div>
+            
+        </div>
+        <?php
+    }
+    echo '</div></section>';
+}

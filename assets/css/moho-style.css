@@ -254,16 +254,17 @@ a.moho-dl-button-v2:hover {
    8. استایل آکاردئون دروس (Easy Accordion)
    ========================================= */
 
-/* تمیزکاری کانتینر اصلی */
-.sp-easy-accordion .ea-card {
+/* --- تمیزکاری کلی (بسیار مهم) --- */
+/* حذف استایل‌های پیش‌فرض تمام کارت‌های آکاردئون */
+.ea-card, .sp-easy-accordion .ea-card {
     border: none !important;
     background: none !important;
     box-shadow: none !important;
     margin-bottom: 10px !important; 
 }
 
-/* استایل هدرهای فصل */
-.sp-easy-accordion .ea-card .ea-header a {
+/* --- هدر (تیتر فصل) --- */
+.ea-card .ea-header a {
     transition: all 0.3s ease-in-out !important;
     display: flex !important;
     align-items: center !important;
@@ -271,78 +272,59 @@ a.moho-dl-button-v2:hover {
     font-size: 18px; 
 }
 
-/* حالت بسته (رنگ معمولی) */
-.sp-easy-accordion .ea-card .ea-header a.collapsed {
+/* حالت بسته */
+.ea-card .ea-header a.collapsed {
     background: #240f3a !important; 
     color: #ffffff !important;
     border: 2px solid #240f3a !important;
     border-radius: 99px !important; 
 }
-.sp-easy-accordion .ea-card .ea-header a.collapsed .ea-expand-icon {
-    color: #ffcc00 !important; 
-}
-.sp-easy-accordion .ea-card .ea-header a.collapsed:hover {
+.ea-card .ea-header a.collapsed .ea-expand-icon { color: #ffcc00 !important; }
+.ea-card .ea-header a.collapsed:hover {
     background: #3a1a5c !important; 
     border-color: #3a1a5c !important;
 }
 
-/* حالت باز (رنگ کلیک شده) */
-.sp-easy-accordion .ea-card .ea-header a:not(.collapsed) {
+/* حالت باز */
+.ea-card .ea-header a:not(.collapsed) {
     background: #ffcc00 !important; 
     color: #240f3a !important; 
     border: 2px solid #ffcc00 !important;
     border-radius: 99px !important;
 }
-.sp-easy-accordion .ea-card .ea-header a:not(.collapsed) .ea-expand-icon {
-    color: #240f3a !important; 
-}
+.ea-card .ea-header a:not(.collapsed) .ea-expand-icon { color: #240f3a !important; }
 
-/* استایل بدنه آکاردئون */
-.sp-easy-accordion .ea-card .ea-body {
+/* --- بدنه (محتوای باز شده) --- */
+.ea-card .ea-body {
     padding: 25px !important;
     background: #ffffff;
     border: 1px solid #eee;
     border-radius: 30px !important;
     margin-top: 10px !important; 
     margin-bottom: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
 }
 
-/* پاراگراف توضیحات فصل */
-.sp-easy-accordion .ea-body p {
-    font-size: 15px; color: #555; line-height: 1.7;
-    border-bottom: 1px dashed #eee; padding-bottom: 20px;
-    margin-bottom: 25px !important;
-}
-
-/* استثنا: پاراگراف‌های داخل FAQ (با ID خاص) */
-#sp-ea-1060 .ea-body p {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-/* --- استایل باکس‌های درس --- */
-/* (این کلاس‌ها توسط JS تولید می‌شوند) */
-
-/* ریست کردن لیست (برای تمام آکاردئون‌ها) */
-.sp-easy-accordion .ea-body ul { 
+/* --- ریست کردن لیست (حیاتی برای حذف بولت‌ها) --- */
+/* هم با کلاس عمومی و هم با کلاس کمکی JS هدف می‌گیریم */
+.ea-body ul, .moho-custom-list { 
     list-style: none !important; 
     padding: 0 !important; 
     margin: 0 !important; 
 }
-.sp-easy-accordion .ea-body ul li { 
+.ea-body ul li, .moho-custom-list li { 
     padding: 0 !important; 
     margin: 0 0 12px 0 !important; 
     background: none !important; 
     font-weight: normal !important;
+    list-style-type: none !important; /* اطمینان دوچندان */
 }
-/* حذف بولت‌های پیش‌فرض وردپرس اگر هنوز مانده‌اند */
-.sp-easy-accordion .ea-body ul li::before {
+/* حذف بولت‌های احتمالی قالب */
+.ea-body ul li::before, .moho-custom-list li::before {
     content: none !important;
-    display: none !important;
+    display: none !important; 
 }
 
+/* --- استایل باکس‌های درس (ساخته شده توسط JS) --- */
 .migeh-lesson-box {
     display: flex; align-items: center; justify-content: space-between;
     background: #ffffff; border: 1px solid #eee;
@@ -363,60 +345,33 @@ a.moho-dl-button-v2:hover {
 }
 .migeh-lesson-icon svg { width: 22px; height: 22px; }
 
-.migeh-lesson-text { display: flex; flex-direction: column; overflow: hidden; }
 .migeh-lesson-text span {
     font-weight: bold !important; color: #333; font-size: 16px;
-    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .migeh-lesson-button {
     background: #240f3a !important; color: #ffffff !important;
     padding: 12px 28px; border-radius: 99px;
     text-decoration: none !important; font-weight: bold; font-size: 14px;
-    white-space: nowrap; transition: all 0.2s ease; 
-    margin-right: 5px;
+    white-space: nowrap; margin-right: 5px;
 }
 .migeh-lesson-button:hover { background: #ffcc00 !important; color: #ffffff !important; }
 
-/* استایل درس‌های قفل شده */
+/* قفل */
 .migeh-lesson-box.is-locked { background: #fcfcfc; opacity: 0.6; }
-.migeh-lesson-box.is-locked .migeh-lesson-icon { background: #eee; color: #aaa; }
 .migeh-lesson-box.is-locked .migeh-lesson-button-locked {
     background: #ccc !important; color: #777 !important;
     padding: 10px 24px; border-radius: 99px; font-size: 14px;
-    font-weight: bold; margin-right: 15px;
-    cursor: not-allowed;
-    white-space: nowrap;
+    font-weight: bold; margin-right: 15px; cursor: not-allowed;
 }
 
-/* ریسپانسیو */
+/* موبایل */
 @media (max-width: 768px) {
-    .sp-easy-accordion .ea-card .ea-header a {
-        padding: 15px 20px !important;
-        font-size: 16px !important;
-        line-height: 1.5;
-        text-align: right;
-    }
-    .migeh-lesson-box {
-        flex-wrap: wrap;
-        padding: 12px !important;
-        border-radius: 30px; 
-    }
-    .migeh-lesson-info {
-        flex-basis: 100%; 
-        flex-grow: 1;
-        margin-bottom: 15px;
-    }
-    .migeh-lesson-text span {
-        font-size: 14px !important;
-        white-space: normal;
-    }
-    .migeh-lesson-button,
-    .migeh-lesson-button-locked {
-        flex-basis: 100%;
-        margin: 0;
-        text-align: center;
-    }
+    .migeh-lesson-box { flex-wrap: wrap; border-radius: 30px; }
+    .migeh-lesson-info { flex-basis: 100%; margin-bottom: 15px; }
+    .migeh-lesson-text span { white-space: normal; font-size: 14px !important; }
+    .migeh-lesson-button, .migeh-lesson-button-locked { flex-basis: 100%; margin: 0; text-align: center; }
 }
 
 /* =========================================
@@ -556,4 +511,1384 @@ a.moho-dl-button-v2:hover {
     font-weight: 400;
     opacity: 0.8;
     display: block;
+}
+
+/* =========================================
+   10. بخش "برای چه کسانی مناسب است" (Who For)
+   ========================================= */
+
+#who-for {
+    color: #111;
+    padding: 40px 16px;
+    font-family: inherit; /* ارث‌بری فونت از قالب */
+    background: transparent;
+    --accent: #704fe6;
+    --card-bg: #ffffff;
+    --card-border: #e6e6e6;
+}
+
+.who-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+/* شبکه کارت‌ها */
+.who-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (min-width: 1100px) {
+    .who-grid { gap: 28px; }
+}
+
+@media (max-width: 720px) {
+    .who-grid { grid-template-columns: 1fr; }
+}
+
+/* استایل کارت */
+.who-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 18px;
+    position: relative;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+.who-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* شماره بزرگ گوشه کارت */
+.who-num {
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+    font-family: inherit;
+    transform: translateY(-2px);
+}
+
+/* آیکون گوشه کارت */
+.who-icon {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.who-icon svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+/* عنوان و توضیحات */
+.who-title {
+    font-weight: 800;
+    font-size: 18px;
+    color: #111;
+    margin: 40px 0 8px;
+    text-align: right;
+    width: 100%;
+}
+
+.who-card > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-self: stretch;
+}
+
+.who-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    direction: rtl;
+}
+
+/* فوکوس برای دسترس‌پذیری */
+.who-card:focus-within, .who-card:focus {
+    outline: 3px solid rgba(194, 90, 43, 0.12);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   11. استایل کارت محصول (Product Card Design)
+   ========================================= */
+
+/* استایل کلی کارت */
+.card-product {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* مخفی کردن المان‌های اضافه */
+.woocommerce-result-count, 
+form.woocommerce-ordering,
+.card-product .meta-item--sales {
+    display: none !important;
+}
+
+.card-buttons {
+    margin-top: auto !important;
+    padding-bottom: 15px !important;
+}
+
+.card-footer {
+    flex-grow: 1 !important;
+    background: #fff !important;
+    position: relative !important;
+    z-index: 2;
+    padding-top: 0 !important;
+    border-radius: 0 0 30px 30px !important;
+}
+
+/* قاب اصلی هدر (۱۶:۹) */
+.card-product .card-header {
+    position: relative !important;
+    width: 100% !important;
+    padding-bottom: 56.25% !important; /* نسبت ۱۶ به ۹ */
+    height: 0 !important;
+    background: #ffffff !important; /* رنگ زمینه پشت عکس */
+    z-index: 1 !important; 
+    overflow: visible !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 30px !important;
+}
+
+/* خنثی‌سازی مزاحم‌ها (Crop Box) */
+.card-product .crop-box, 
+.card-product .crop-box--1x1 {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important; height: 100% !important;
+    margin: 0 !important; padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* اسم مدرس (زیر عکس) */
+.card-product .card-subtitle {
+    height: 45px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: -45px !important;
+    position: relative !important;
+    z-index: 5 !important; 
+    background: transparent !important; 
+    color: #333 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    pointer-events: none;
+    border: none !important;
+}
+
+.card-product .card-subtitle a,
+.card-product .card-subtitle i {
+    color: #333 !important; 
+}
+
+/* عکس (لایه رویی) */
+.card-product .card-header a {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important; 
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10 !important; 
+    background: #ffffff !important; 
+    transition: height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    border-radius: 30px !important;
+    overflow: hidden !important; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+
+.card-product .card-header img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    position: absolute !important;
+    inset: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+    transition: transform 0.5s ease !important; 
+}
+
+/* --- اکشن‌های هاور --- */
+
+/* کوتاه شدن عکس (نمایان شدن اسم مدرس) */
+.card-product:hover .card-header a {
+    height: calc(100% - 45px) !important;
+    border-radius: 30px !important; 
+}
+
+/* زوم شدن عکس */
+.card-product:hover .card-header img {
+    transform: scale(1.05) !important; 
+}
+
+/* =========================================
+   12. اپلیکیشن سرفصل‌های ایلوستریتور (React Card Stack)
+   ========================================= */
+
+/* مخفی کردن اسکرول‌بار مزاحم در کامپوننت */
+#react-illustration-app .no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+#react-illustration-app .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* کانتینر اصلی استک */
+.wp-stack-container {
+    width: 100%;
+    position: relative;
+    overflow: visible !important;
+    font-family: inherit !important; /* ارث‌بری فونت قالب */
+    z-index: 0;
+}
+
+/* استایل پایه کارت */
+.wp-stack-card {
+    transform-origin: top center;
+}
+
+/* لایه تاریک‌کننده برای عمق */
+.wp-card-depth-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    z-index: 40;
+    pointer-events: none;
+    border-radius: inherit; /* گردی کارت را می‌گیرد */
+    opacity: 0;
+    transition: opacity 0.1s linear;
+}
+
+/* =========================================
+   13. کاروسل نمونه‌کارهای دانشجویان (Infinite Carousel)
+   ========================================= */
+
+/* کانتینر اصلی */
+#student-showcase-root {
+    position: relative;
+    z-index: 0;
+    padding: 8px 0;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* فاصله بین ردیف‌ها */
+    direction: ltr; /* اجبار به LTR برای انیمیشن درست */
+    overflow: hidden;
+}
+
+/* ردیف تکی */
+.student-row {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 0;
+    margin: 6px 0;
+}
+
+/* ماسک‌های محو شونده کناری (Fade Effect) */
+.mask-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px; /* کمی عریض‌تر برای زیبایی */
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+    z-index: 2;
+    pointer-events: none;
+}
+.mask-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px;
+    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* مسیر حرکت (Track) */
+.track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+}
+@media(min-width: 640px) { .track { gap: 16px; } }
+
+/* آیتم تکی */
+.item {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* قاب عکس */
+.img-wrap {
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f3f4f6;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* کمی سایه */
+}
+
+/* استایل عکس */
+.img-wrap img {
+    display: block;
+    object-fit: cover;
+    width: 120px;
+    height: 160px;
+    transition: transform 0.3s ease;
+}
+.img-wrap:hover img {
+    transform: scale(1.05); /* زوم ریز هنگام هاور */
+}
+
+/* ریسپانسیو */
+@media(min-width: 640px) { 
+    .img-wrap img { width: 160px; height: 200px; } 
+    #student-showcase-root { gap: 32px; }
+}
+@media(min-width: 768px) { 
+    .img-wrap img { width: 192px; height: 256px; } 
+}
+
+/* انیمیشن‌ها */
+@keyframes scroll-left { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+@keyframes scroll-right { 
+    0% { transform: translateX(-50%); } 
+    100% { transform: translateX(0); } 
+}
+
+.animate-scroll-left { 
+    animation: scroll-left 50s linear infinite; 
+}
+.animate-scroll-right { 
+    animation: scroll-right 50s linear infinite; 
+}
+
+/* توقف انیمیشن هنگام هاور (برای بررسی دقیق‌تر عکس‌ها) */
+.track:hover {
+    animation-play-state: paused;
+}
+
+/* =========================================
+   14. اصلاحات نهایی و سراسری قالب (General Tweaks)
+   ========================================= */
+
+/* مخفی کردن توضیحات فرم کامنت */
+.comment-form-description {
+    display: none !important;
+}
+
+/* اصلاح تصاویر شاخص (صفحه پست و آرشیو) */
+.single-post figure.card-thumbnail,
+.archive article.card-blog .card-header,
+.archive article.card-blog figure.card-thumbnail {
+    position: relative;
+    overflow: hidden !important;
+    border-radius: 30px !important;
+    height: 100%;
+}
+
+.single-post figure.card-thumbnail img.wp-post-image,
+.archive article.card-blog figure.card-thumbnail img.wp-post-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* --- بخش مطالب مرتبط (Related Posts) --- */
+
+/* اصلاح کادر تصویر */
+.related-posts .card-blog--tile .card-thumbnail {
+    padding-top: 62.5% !important; 
+    height: auto !important;
+    position: relative !important;
+    border-radius: 30px !important;
+    overflow: hidden !important;
+}
+
+/* تنظیم تصویر */
+.related-posts .card-blog--tile .card-thumbnail img {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; 
+    object-position: center !important;
+    border-radius: 30px !important;
+}
+
+/* استایل کارت والد */
+.related-posts .card-blog--tile {
+    border-radius: 30px !important;
+    overflow: hidden !important;
+    background: #242424 !important;
+    text-shadow: none !important;
+}
+
+.related-posts .card-blog--tile .card-header,
+.related-posts .card-blog--tile .card-footer {
+    border-radius: 30px !important; 
+    overflow: hidden !important;
+}
+
+/* تنظیمات Footer کارت */
+.related-posts .card-blog--tile .card-footer {
+    padding-right: 15px !important;
+    padding-left: 20px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    min-height: 80px !important;
+    box-sizing: border-box !important;
+}
+
+/* افکت هاور (زرد شدن فقط لینک‌ها) */
+.related-posts .card-blog--tile:hover .card-title,
+.related-posts .card-blog--tile:hover .post-categories {
+    color: #fff !important;
+}
+.related-posts .card-blog--tile .card-title a:hover,
+.related-posts .card-blog--tile .post-categories a:hover {
+    color: #ffcc00 !important;
+}
+
+/* حذف سایه‌ها و افکت‌های اضافی قالب */
+.related-posts .card-blog--tile .card-header::before,
+.related-posts .card-blog--tile .card-header::after,
+.related-posts .card-blog--tile .card-thumbnail::before,
+.related-posts .card-blog--tile .card-thumbnail::after,
+.related-posts .card-blog--tile .card-header > a::before,
+.related-posts .card-blog--tile .card-header > a::after {
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/* ریسپانسیو مطالب مرتبط (موبایل) */
+@media (max-width: 480px) {
+    .related-posts .card-blog--tile .card-subtitle.flex-group { display: block !important; }
+    
+    .related-posts .card-blog--tile .card-title {
+        font-size: 14px !important; /* کمی بزرگتر از 10px برای خوانایی بهتر */
+        white-space: normal !important;
+        line-height: 1.3 !important;
+        max-height: 3.9em !important;
+    }
+    
+    .related-posts .card-blog--tile .post-categories,
+    .related-posts .card-blog--tile .post-published {
+        font-size: 11px !important;
+    }
+    
+    .related-posts .card-blog--tile .card-footer {
+        padding: 5px 10px !important;
+    }
+}
+
+/* ریسپانسیو ویدیو یوتیوب */
+.video-responsive-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    margin-bottom: 15px;
+    border-radius: 25px;
+}
+.video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    width: 100%; height: 100%;
+}
+
+/* اصلاح تصاویر شاخص در صفحات هاب */
+figure.blog-thumbnail img {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+figure.blog-thumbnail {
+    margin-bottom: 30px !important;
+}
+
+/* =========================================
+   15. دکمه‌های سوشال و فروش (Moho Buttons)
+   ========================================= */
+
+/* تنظیمات اسکرول نرم */
+html { scroll-behavior: smooth; }
+#buy-section { scroll-margin-top: 120px; }
+
+/* استایل پایه دکمه */
+.moho-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    text-decoration: none !important;
+    cursor: pointer;
+    border: none;
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+/* آیکون دایره‌ای (پیش‌فرض) */
+.moho-btn-icon {
+    flex-shrink: 0;
+    width: 66px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.moho-btn > span:nth-child(2) {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.moho-btn-icon svg { width: 30px; height: 30px; }
+.moho-btn-icon svg.play-icon { width: 15px; height: 15px; }
+
+/* هاور پیش‌فرض */
+.moho-btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+}
+.moho-btn:hover .moho-btn-icon { transform: scale(1.05); }
+
+/* --- تم‌های رنگی --- */
+
+/* یوتیوب */
+.btn-youtube { background: linear-gradient(-120deg, #fd5b67 0%, #e1117a 100%); box-shadow: 0 5px 15px #e11179a8; }
+.btn-youtube .moho-btn-icon svg { fill: #e1117a; }
+.btn-youtube:hover { box-shadow: 0 20px 30px #e11179a8; }
+
+/* تلگرام */
+.btn-telegram { background: linear-gradient(-120deg, #2dc9ff 0%, #0765ff 100%); box-shadow: 0 5px 15px #18a2ffb4; }
+.btn-telegram .moho-btn-icon svg { fill: #1891ff; }
+.btn-telegram:hover { box-shadow: 0 20px 30px #2897f1c4; }
+
+/* خرید (سبز) */
+.btn-buy { background: linear-gradient(135deg, #42e695 0%, #3bb2b8 100%); box-shadow: 0 5px 15px rgba(59, 178, 184, 0.4); }
+.btn-buy .moho-btn-icon svg { fill: #00897b; } 
+.btn-buy:hover { box-shadow: 0 20px 30px rgba(59, 178, 184, 0.6); }
+
+/* --- دکمه CTA جدید (طرح بنفش) --- */
+.btn-cta {
+    background-color: #240f3a !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 18px !important;
+    padding: 20px 32px !important;
+    min-width: 200px;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* حذف استایل‌های پیش‌فرض آیکون برای CTA */
+.btn-cta .moho-btn-icon {
+    background: transparent !important;
+    width: auto !important;
+    height: auto !important;
+    margin-left: 10px;
+}
+.btn-cta .moho-btn-icon svg {
+    fill: #ffffff !important;
+    width: 24px;
+    height: 24px;
+}
+.btn-cta > span:nth-child(2) {
+    flex-grow: 0;
+    padding: 0;
+}
+
+/* هاور و اکتیو CTA */
+.btn-cta:hover {
+    background-color: #3a1a5c !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+.btn-cta:active {
+    transform: scale(0.95) !important;
+}
+
+/* ریسپانسیو */
+@media (min-width: 768px) {
+    .btn-cta {
+        width: auto !important;
+        font-size: 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .moho-btn { width: auto; justify-content: flex-start; padding: 10px 15px !important; }
+    .moho-btn > span:nth-child(2) { text-align: center; flex-grow: 1; }
+    .moho-btn-icon { margin-left: 10px; }
+    .btn-cta { justify-content: center !important; }
+}
+
+/* =========================================
+   16. لینک‌دار کردن تصاویر آرشیو (Clickable Thumbnails)
+   ========================================= */
+.archive article.card-blog .card-header figure.card-thumbnail {
+    cursor: pointer !important; /* تغییر موس به حالت دست */
+}
+
+/* =========================================
+   17. دکمه‌های سفارشی نوار منو (Nav Buttons)
+   ========================================= */
+
+/* --- تنظیمات کلی --- */
+.nav-btn-store a,
+.nav-btn-consult a,
+.nav-btn-about a {
+    display: inline-block !important;
+    padding: 10px 15px !important;
+    border-radius: 50px !important;
+    font-weight: 400 !important;
+    text-align: center;
+    transition: all 0.3s ease !important;
+    line-height: 1.2;
+    margin-left: 0 !important;
+    font-size: 14px !important;
+}
+
+/* 1. دکمه فروشگاه (The Money Button) */
+.nav-btn-store a {
+    background-color: #704fe6 !important;
+    color: #fff !important;
+    border: 2px solid #704fe6 !important;
+}
+.nav-btn-store a:hover {
+    background-color: #5c3bc0 !important;
+    border-color: #5c3bc0 !important;
+    transform: translateY(-2px);
+}
+
+/* 2. دکمه مشاوره (The VIP Button) */
+.nav-btn-consult a {
+    background-color: transparent !important;
+    color: #704fe6 !important;
+    border: 2px solid #704fe6 !important;
+}
+.nav-btn-consult a:hover {
+    background-color: #704fe6 !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+}
+
+/* 3. دکمه درباره من (Minimal) */
+.nav-btn-about a {
+    background-color: transparent !important;
+    color: #555 !important;
+    border: 2px solid #e0e0e0 !important;
+}
+.nav-btn-about a:hover {
+    border-color: #704fe6 !important;
+    color: #704fe6 !important;
+}
+
+/* --- موبایل (زیر 768px) --- */
+@media (max-width: 768px) {
+    .nav-btn-store a, 
+    .nav-btn-consult a, 
+    .nav-btn-about a {
+        display: block !important;
+        width: 100% !important;
+        margin: 5px 0 !important;
+        text-align: center !important;
+        border-radius: 50px !important;
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+    
+    /* مخفی کردن آیکون‌ها در موبایل */
+    .nav-btn-store a::before,
+    .nav-btn-consult a::before,
+    .nav-btn-about a::before {
+        display: none !important;
+    }
+}
+
+/* --- تبلت و لپ‌تاپ‌های کوچک (769px تا 1290px) - حالت آیکونی --- */
+@media (min-width: 769px) and (max-width: 1290px) {
+
+    /* تبدیل به دایره */
+    .nav-btn-store a,
+    .nav-btn-consult a,
+    .nav-btn-about a {
+        width: 40px !important;       
+        height: 40px !important;      
+        padding: 0 !important;        
+        border-radius: 50% !important;
+        font-size: 0 !important;      /* مخفی کردن متن */
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px !important;
+    }
+
+    /* تنظیمات آیکون */
+    .nav-btn-store a::before,
+    .nav-btn-consult a::before,
+    .nav-btn-about a::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: currentColor; 
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+    }
+
+    /* آیکون‌ها (SVG Mask) */
+    .nav-btn-store a::before {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E");
+    }
+
+    .nav-btn-consult a::before {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
+    }
+
+    .nav-btn-about a::before {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+    }
+}
+
+/* =========================================
+   18. جدول قیمت‌گذاری هوشمند (Pricing Table)
+   ========================================= */
+
+/* استایل پایه دکمه‌ها */
+.pricing-btn {
+    position: relative;
+    overflow: hidden; 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+}
+
+/* هاور دکمه */
+.pricing-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* افکت برق زدن (Shine) */
+.pricing-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    z-index: 2;
+    animation: button-shine 4s infinite; 
+}
+
+@keyframes button-shine {
+    0% { left: -150%; }
+    20% { left: 150%; } 
+    100% { left: 150%; } 
+}
+
+/* --- انیمیشن‌های تپش (Pulse) --- */
+
+/* تپش آبی (برای باندل ایلوستریتور) */
+.pulse-blue {
+    animation: soft-pulse-blue 3s infinite;
+}
+@keyframes soft-pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(30, 122, 245, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(30, 122, 245, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(30, 122, 245, 0); }
+}
+
+/* تپش نارنجی (برای باندل فتوشاپ) */
+.pulse-orange {
+    animation: soft-pulse-orange 3s infinite;
+}
+@keyframes soft-pulse-orange {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* توقف تپش هنگام هاور */
+.pulse-blue:hover, .pulse-orange:hover {
+    animation: none; 
+}
+
+/* --- سایه‌های دکمه --- */
+.btn-orange-shadow { box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.39); }
+.btn-orange-shadow:hover { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.23); }
+
+.btn-blue-shadow { box-shadow: 0 4px 14px 0 rgba(30, 122, 245, 0.39); }
+.btn-blue-shadow:hover { box-shadow: 0 6px 20px rgba(30, 122, 245, 0.23); }
+
+/* =========================================
+   19. بازطراحی صفحه محصول ووکامرس (Product Redesign)
+   ========================================= */
+
+/* --- ۱. مخفی کردن بخش‌های پیش‌فرض قالب --- */
+.product-header, 
+.woocommerce-product-gallery, 
+.summary.entry-summary,
+li.woolearn_lessons_tab, 
+#tab-woolearn_lessons, 
+.woolearn-headlines,
+.woocommerce-product-rating, 
+.product-sidebar-widget--course-information,
+.product-sidebar-widget--course-author-products,
+.comment-form-description, 
+hr.line, 
+.separator, 
+.view-wishlist {
+    display: none !important;
+}
+
+/* --- ۲. استایل هدر جدید (کارت سفید بزرگ) --- */
+.cb-modern-header {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    padding: 60px; /* تنظیم پدینگ منطقی */
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+/* تیتر */
+.cb-title-row {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f5f5f5;
+    text-align: right;
+}
+.cb-title-row h1 {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #222 !important;
+    margin: 0 !important;
+    line-height: 1.4;
+}
+
+/* بدنه (دو ستونه) */
+.cb-body-row {
+    display: flex; 
+    gap: 50px; 
+    align-items: flex-start; 
+    margin-bottom: 30px;
+}
+.cb-gallery-col { width: 55%; position: relative; }
+.cb-info-col { width: 45%; }
+
+/* تصویر محصول */
+.cb-image-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+.cb-image-wrapper img {
+    width: 100%; 
+    height: auto; 
+    display: block;
+    object-fit: cover;
+}
+
+/* دکمه پخش ویدیو */
+.cb-video-trigger {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 5;
+}
+.cb-video-trigger a {
+    display: flex; align-items: center; justify-content: center;
+    width: 65px; height: 65px;
+    background: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(5px);
+    border-radius: 50%; color: #fff; 
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: 0.3s;
+    text-decoration: none !important;
+}
+.cb-video-trigger a:hover {
+    background: #e84118; transform: scale(1.1); border-color: transparent;
+}
+.cb-video-trigger svg { width: 28px; height: 28px; fill: currentColor; }
+
+/* لیست ویژگی‌ها */
+.cb-specs-list { list-style: none; padding: 0; margin: 0; }
+.cb-specs-list li {
+    display: flex; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 15px;
+}
+.cb-specs-list li:last-child { border-bottom: none; }
+.cb-label { color: #888; }
+.cb-val, .cb-val a { color: #333; font-weight: bold; text-decoration: none !important; }
+
+/* آیکون تیک */
+.moho-verified-icon {
+    color: #1c96e8; margin-right: 5px; font-weight: bold;
+}
+
+/* --- ۳. فوتر (قیمت و خرید) --- */
+.cb-footer-row {
+    background: #fdfdfd; border: 1px solid #eee; border-radius: 14px;
+    padding: 15px 30px; display: flex; align-items: center; justify-content: space-between;
+}
+
+/* اصلاح قیمت (حذف خط‌خوردگی و استایل‌های مزاحم) */
+.cb-price-wrapper, .cb-price-wrapper * {
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.cb-price-wrapper .amount { 
+    font-size: 26px; font-weight: 900; color: #000; 
+}
+.cb-price-wrapper del { display: none; } /* قیمت قبلی رو نشون نده */
+
+/* دکمه افزودن به سبد */
+.cb-btn-wrapper button.single_add_to_cart_button {
+    background: #e84118 !important; color: #fff !important;
+    padding: 12px 35px !important; border-radius: 8px !important;
+    font-size: 16px !important; font-weight: bold !important;
+    border: none !important; margin: 0 !important;
+    transition: background 0.3s;
+}
+.cb-btn-wrapper button.single_add_to_cart_button:hover {
+    background: #c23616 !important;
+}
+
+/* --- ۴. فشرده‌سازی بخش نظرات (Compact Comments) --- */
+
+#review_form_wrapper {
+    padding: 20px !important; 
+    background: #fafafa !important; 
+    border: 1px solid #eee !important;
+    border-radius: 15px !important; 
+    margin-bottom: 30px !important;
+}
+
+/* تیتر فرم */
+#reply-title { 
+    font-size: 16px !important; margin: 0 0 15px 0 !important; 
+    display: block !important; color: #333 !important; font-weight: bold;
+}
+#reply-title small { display: none !important; }
+
+/* حذف اضافات */
+.comment-form-comment label, 
+.comment-form-rating label, 
+.comment-notes { display: none !important; }
+
+/* اینپوت‌ها */
+#comment { 
+    height: 80px !important; min-height: 80px !important; 
+    padding: 12px !important; font-size: 14px !important;
+    border: 1px solid #e0e0e0 !important; border-radius: 10px !important;
+    margin-bottom: 15px !important; width: 100% !important;
+    background: #fff !important;
+}
+
+/* دکمه ارسال */
+.form-submit input#submit {
+    padding: 8px 20px !important; font-size: 13px !important;
+    border-radius: 8px !important; width: auto !important;
+    background: #333 !important; color: #fff !important;
+}
+
+/* لیست نظرات */
+#comments ol.commentlist li .comment_container {
+    padding: 15px !important; margin-bottom: 15px !important;
+    border: 1px solid #f0f0f0 !important; border-radius: 12px !important;
+    background: #fff !important;
+}
+#comments ol.commentlist li img.avatar {
+    width: 40px !important; height: 40px !important; 
+    border-radius: 50% !important;
+}
+#comments ol.commentlist li .comment-text { 
+    margin-right: 55px !important; border: none !important; padding: 0 !important;
+}
+
+/* --- ۵. ریسپانسیو (موبایل) --- */
+@media (max-width: 768px) {
+    .cb-modern-header { padding: 20px !important; margin-top: 15px; }
+    .cb-title-row h1 { font-size: 20px !important; }
+    
+    .cb-body-row { flex-direction: column; gap: 20px; }
+    .cb-gallery-col, .cb-info-col { width: 100%; }
+    
+    .cb-footer-row { flex-direction: column; gap: 15px; text-align: center; }
+    .cb-price-wrapper .amount { font-size: 22px; }
+    .cb-btn-wrapper button.single_add_to_cart_button { width: 100% !important; }
+}
+
+/* =========================================
+   20. دکمه خرید چسبان (Sticky CTA Button)
+   ========================================= */
+
+/* کانتینر اصلی دکمه (مدیریت انیمیشن ورود/خروج) */
+li.sticky-cta-btn {
+    display: flex !important;
+    align-items: center;
+    list-style: none !important;
+    
+    /* حالت اولیه (مخفی) */
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0 !important;
+    transform: translateX(-20px);
+    
+    transition: 
+        max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+        opacity 0.3s ease 0s,
+        transform 0.3s ease 0s,
+        margin 0.5s ease 0.2s;
+}
+
+li.sticky-cta-btn.is-visible {
+    max-width: 250px;
+    opacity: 1;
+    margin-left: 20px !important;
+    transform: translateX(0);
+    
+    transition: 
+        max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        margin 0.5s ease 0s,
+        opacity 0.4s ease 0.3s,
+        transform 0.4s ease 0.3s;
+}
+
+/* استایل دکمه (سایه و کادر بیرونی) */
+li.sticky-cta-btn a.button {
+    position: relative;
+    background-color: #1e7af5 !important;
+    color: #fff !important;
+    padding: 0 !important; 
+    border-radius: 50px !important;
+    font-family: inherit !important;
+    font-weight: 900 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+    box-shadow: 0 0 10px rgba(30, 122, 245, 0.6), 0 5px 15px rgba(0,0,0,0.2) !important;
+    display: flex;
+    align-items: center;
+    line-height: normal !important;
+    border: none !important;
+    white-space: nowrap;
+}
+
+li.sticky-cta-btn a.button:hover {
+    background-color: #104c9e !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(30, 122, 245, 0.8), 0 8px 20px rgba(0,0,0,0.3) !important;
+}
+
+/* لایه داخلی برای محتوا و شاین (Inner Wrapper) */
+li.sticky-cta-btn a.button .btn-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 30px !important; /* پدینگ اصلی */
+    border-radius: 50px !important;
+    overflow: hidden !important; /* شاین فقط اینجا بریده می‌شود */
+    width: 100%;
+    height: 100%;
+}
+
+li.sticky-cta-btn a.button i,
+li.sticky-cta-btn a.button span {
+    position: relative;
+    z-index: 2; 
+    font-size: 18px !important;
+}
+
+/* افکت شاین (Shimmer) */
+li.sticky-cta-btn a.button .btn-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 30px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); 
+    transform: skewX(-20deg);
+    
+    animation: shimmer 3s infinite;
+    filter: blur(8px); 
+    z-index: 1;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+}
+
+/* موبایل */
+@media (max-width: 991px) {
+    li.sticky-cta-btn {
+        display: none !important;
+    }
+}
+
+/* =========================================
+   21. محصولات مشابه اختصاصی (Custom Related Products)
+   ========================================= */
+
+/* مخفی کردن بخش‌های قدیمی قالب */
+.related.products, .up-sells.products { 
+    display: none !important; 
+}
+
+/* کانتینر اصلی */
+.migeh-related-products-v3 {
+    margin: 80px auto;
+    max-width: 1140px;
+    padding: 0 15px;
+    direction: rtl;
+}
+
+/* عنوان بخش */
+.migeh-related-products-v3 h2 {
+    font-size: 24px !important;
+    font-weight: 900;
+    color: #240f3a;
+    margin-bottom: 35px;
+    border-right: 5px solid #ffcc00;
+    padding-right: 15px;
+    text-align: right;
+}
+
+/* شبکه‌بندی (Grid) */
+.migeh-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* کارت محصول */
+.migeh-card {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.migeh-card:hover { 
+    transform: translateY(-7px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.07); 
+}
+
+/* تصویر کارت */
+.migeh-card-img img { 
+    width: 100%; 
+    aspect-ratio: 16/9; 
+    object-fit: cover; 
+    display: block; 
+}
+
+/* محتوای کارت */
+.migeh-card-content { 
+    padding: 20px; 
+    flex-grow: 1; 
+    text-align: right; 
+}
+
+/* نام مدرس */
+.migeh-card-teacher { 
+    font-size: 12px; 
+    color: #888; 
+    margin-bottom: 8px; 
+}
+.migeh-card-teacher i { 
+    margin-left: 5px; 
+    color: #4a148c; 
+}
+
+/* عنوان محصول */
+.migeh-card-title { 
+    margin: 0 0 15px 0 !important; 
+    min-height: 44px; 
+}
+.migeh-card-title a { 
+    font-size: 15px !important; 
+    font-weight: 800; 
+    color: #333 !important; 
+    text-decoration: none !important; 
+}
+
+/* قیمت */
+.migeh-card-price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 900;
+    color: #240f3a;
+    font-size: 16px;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 12px;
+}
+.migeh-card-price .ptitle { 
+    font-size: 13px; 
+    color: #888; 
+    font-weight: normal;
+    margin-left: 10px;
+}
+.migeh-card-price ins { text-decoration: none; }
+.migeh-card-price amount { color: #240f3a; }
+
+/* دکمه پایین کارت */
+.migeh-card-action { padding: 0 20px 20px; }
+.migeh-btn {
+    display: block;
+    background: #f8f8f8;
+    color: #555 !important;
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none !important;
+    transition: 0.3s;
+}
+.migeh-card:hover .migeh-btn { 
+    background: #240f3a; 
+    color: #fff !important; 
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) { 
+    .migeh-grid-container { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 576px) { 
+    .migeh-grid-container { grid-template-columns: 1fr; } 
+}
+
+/* =========================================
+   22. باکس لینک یوتیوب (YouTube Link Box)
+   ========================================= */
+
+.moho-youtube-link-box {
+    background-color: rgba(191, 191, 191, 0.100) !important;
+    border: 1px dashed #5b5b5b;
+    border-radius: 10px; 
+    padding: 25px 20px;
+    margin: 15px 0 25px 0; 
+    text-align: center;
+    direction: rtl;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+/* واترمارک لوگوی یوتیوب */
+.moho-youtube-link-box::before {
+    content: "";
+    position: absolute;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF0000"><path d="M21.58 7.19c-.23-.86-.9-1.52-1.76-1.76C18.25 5 12 5 12 5s-6.25 0-7.82.42c-.86.23-1.52.9-1.76 1.76C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.9 1.52 1.76 1.76C5.75 19 12 19 12 19s6.25 0 7.82-.42c.86-.23 1.52-.9 1.76-1.76C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.5 15.5V8.5l6 3.5-6 3.5z"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 180px;
+    height: 180px;
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg); 
+    z-index: 1;
+}
+
+/* تنظیمات متن */
+.moho-youtube-link-box p {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    color: #000 !important;
+    line-height: 1.6 !important;
+    position: relative;
+    z-index: 2; 
+}
+
+/* استایل لینک */
+.moho-youtube-link-box p a strong {
+    color: #240f3a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.moho-youtube-link-box p a:hover strong {
+    color: #ffcc00; 
+    text-decoration: underline;
 }

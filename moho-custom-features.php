@@ -17,22 +17,8 @@ define( 'MOHO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * 1. فراخوانی فایل‌های استایل و اسکریپت
  */
 function moho_enqueue_assets() {
-    // استایل اصلی
-    wp_enqueue_style( 
-        'moho-custom-style', 
-        MOHO_PLUGIN_URL . 'assets/css/moho-style.css', 
-        array(), 
-        time() // <--- این باعث میشه کش کلاً غیرفعال بشه و تغییرات رو آنی ببینی
-    );
-
-    // اسکریپت اصلی
-    wp_enqueue_script( 
-        'moho-custom-script', 
-        MOHO_PLUGIN_URL . 'assets/js/moho-script.js', 
-        array(), 
-        time(), // <--- اینجا هم همینطور
-        true 
-    );
+    wp_enqueue_style( 'moho-custom-style', MOHO_PLUGIN_URL . 'assets/css/moho-style.css', array(), time() );
+    wp_enqueue_script( 'moho-custom-script', MOHO_PLUGIN_URL . 'assets/js/moho-script.js', array(), time(), true );
 }
 add_action( 'wp_enqueue_scripts', 'moho_enqueue_assets' );
 
